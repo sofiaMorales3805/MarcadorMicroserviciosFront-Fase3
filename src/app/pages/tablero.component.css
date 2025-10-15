@@ -7,6 +7,21 @@
   border-radius: 16px;
 }
 
+.ctl-header-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.exit-btn {
+  color: #666;
+}
+
+.exit-btn:hover {
+  color: #333;
+}
+
 /* Título y mensajes */
 .ctl-title{ margin: 4px 0 12px; }
 .ctl-msg{ color:#444; }

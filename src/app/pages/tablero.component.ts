@@ -8,6 +8,7 @@ import { MarcadorService } from '../servicios/marcador.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 
 
 // Interfaces 
@@ -45,6 +46,7 @@ interface MarcadorGlobal {
 })
 export class TableroComponent implements OnInit, OnDestroy {
   private svc = inject(MarcadorService);
+  private router = inject(Router);
 
   // estado UI
   private _datos = signal<MarcadorGlobal | null>(null);
@@ -359,5 +361,9 @@ export class TableroComponent implements OnInit, OnDestroy {
       },
       error: () => this._esperando.set(false)
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/dashboard']);
   }
 }

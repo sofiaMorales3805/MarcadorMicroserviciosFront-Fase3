@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PartidosService, PartidoDto } from '../../servicios/partidos.service';
 import { EquiposService } from '../../servicios/equipos.service';
 import { TorneosService } from '../../servicios/torneos.service';
+import { MarcadorService } from '../../servicios/marcador.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
@@ -78,6 +79,7 @@ export class PartidosHistorialComponent {
     private api: PartidosService,
     private equiposSvc: EquiposService,
     private torneosSvc: TorneosService,
+    private marcadorSvc: MarcadorService,
     private dialog: MatDialog,
     private router: Router
   ) {
@@ -381,7 +383,16 @@ export class PartidosHistorialComponent {
   }
 
   irTablero(p: PartidoDto) {
-    this.router.navigate(['/control', p.id]);
+    // Primero inicializar el marcador con este partido
+    this.marcadorSvc.inicializarConPartido(p.id).subscribe({
+      next: () => {
+        // Luego navegar al tablero
+        this.router.navigate(['/control']);
+      },
+      error: () => {
+        alert('No se pudo inicializar el partido');
+      }
+    });
   }
 
   // ===== Bracket en modal =====

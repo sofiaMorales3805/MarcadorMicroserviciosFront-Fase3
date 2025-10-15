@@ -117,4 +117,9 @@ export class MarcadorService {
     return this.http.post<MarcadorGlobal>(`${this.base}/partido/finalizar-auto`, {});
   }
 
+  // Inicializar marcador con partido específico
+  inicializarConPartido(partidoId: number): Observable<MarcadorGlobal> {
+    return this.http.post<MarcadorGlobal>(`${this.base}/inicializar/${partidoId}`, {});
+  }
+
 }

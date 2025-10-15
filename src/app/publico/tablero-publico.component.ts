@@ -5,7 +5,7 @@ import { MarcadorService } from '../servicios/marcador.service';
 import { EquiposService } from '../servicios/equipos.service';
 
 // 👇 añadidos mínimos
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PartidosService } from '../servicios/partidos.service';
 
 interface Equipo { nombre:string; puntos:number; faltas:number; }
@@ -29,6 +29,7 @@ export class TableroPublicoComponent implements OnInit, OnDestroy {
   // 👇 añadidos mínimos
   private route     = inject(ActivatedRoute);
   private partidos  = inject(PartidosService);
+  private router    = inject(Router);
 
   // Fallbacks (rutas relativas para evitar 404 por baseHref)
   defaultLogoLocal  = 'assets/logos/local.png';
@@ -181,5 +182,9 @@ export class TableroPublicoComponent implements OnInit, OnDestroy {
         // if (p.torneoId && p.torneoId > 0) this.titulo.set('Playoffs'); else this.titulo.set('Amistoso');
       }
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/dashboard']);
   }
 }

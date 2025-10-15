@@ -1,12 +1,16 @@
 <mat-card class="ctl-card">
-  <h1 class="ctl-title">Tablero de control</h1>
+  <div class="ctl-header-bar">
+    <button mat-icon-button (click)="goBack()" class="exit-btn">
+      <span class="material-symbols-outlined">arrow_back</span>
+    </button>
+    <h1 class="ctl-title">Tablero de control</h1>
+  </div>
 
   <div *ngIf="cargando()" class="ctl-msg">Cargando…</div>
   <div *ngIf="error()" class="ctl-error">{{ error() }}</div>
 
   <ng-container *ngIf="datos() as d">
 
-    <!-- Cabecera: nombres y reloj -->
     <div class="ctl-header">
       <div class="team-name left"><b>{{ d.equipoLocal.nombre }}</b></div>
       <div class="clock">{{ mmss(tiempoMostrado()) }}</div>
@@ -19,7 +23,6 @@
       </div>
     </div>
 
-    <!-- Bloque reloj / navegación -->
     <div class="ctl-actions">
       <button mat-stroked-button (click)="abrirRenombrar()">Renombrar equipos</button>
       <a mat-stroked-button href="/publico" target="_blank" rel="noopener">Vista pública</a>
